@@ -1,10 +1,18 @@
 export function splitIPAddress(str){
-
+ 
     let component=[];
-    var format= /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gi;
-    if(!(format.test(str)))
-      return component;
 
     component=str.split(/[.]/);
+    let componentLength=component.length;
+    if(componentLength!==4){
+      return [];
+    }
+
+    for(let i=0;i<4;i++){
+      if(!(component[i]>=0 && component[i]<256)){
+        return [];
+      }
+    }
+    
     return component;
 }
